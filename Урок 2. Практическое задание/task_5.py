@@ -19,3 +19,18 @@
 
 Допускается исп-е встроенных ф-ций
 """
+result = ""
+new_line = 0
+def asckii_printer(first, second):
+    global result, new_line
+    new_line += 1
+    result += str(first) + " - " + str(chr(first)) + " " 
+    if new_line == 10:
+        new_line = 0
+        result += "\n"
+    if first == second:
+        return result
+    return asckii_printer(first+1, second)
+
+
+print(asckii_printer(32, 127))

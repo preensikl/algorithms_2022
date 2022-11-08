@@ -13,3 +13,13 @@
 
 Решите через рекурсию. В задании нельзя применять циклы.
 """
+
+def summer(numb):
+    if numb == 0:
+        return numb
+    summ = summer(numb-1)
+    return numb + summ
+
+
+n = 5
+print(summer(n) == n*(n+1)/2)

@@ -24,3 +24,35 @@ reduce
 __mul__
 __add__
 """
+# from collections
+from abc import ABC, abstractmethod
+from collections import deque
+
+
+class Calculator(ABC):
+    # @abstractmethod
+    def __init__(self):
+        self.sum16 = 0
+        self.mult16 = 1
+
+    # @abstractmethod
+    def calculator(self, *args):
+        for i in args:
+            self.sum16 = self.sum16 + int(i, 16)
+        return deque(hex(self.sum16))
+    
+    # @abstractmethod
+    def multiplication(self, *args):
+        for i in args:
+            self.mult16 = self.mult16 * int(i, 16)
+        return deque(hex(self.mult16))
+
+calc = Calculator()
+summ = calc.calculator("a2", "C4F")
+print(summ)
+
+mult = calc.multiplication("a2", "C4F")
+print(mult)
+
+
+print(deque(hex(int("a2", 16)+int("C4F", 16))))

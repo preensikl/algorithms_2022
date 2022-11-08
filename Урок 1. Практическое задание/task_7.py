@@ -13,3 +13,14 @@
 Примечание: ПРОШУ ВАС ВНИМАТЕЛЬНО ЧИТАТЬ ЗАДАНИЕ!
 --код с нуля писать не нужно, требуется доработать пример с урока
 """
+def palindrom_shecker(s):
+    s = s.replace(" ", '')
+    if len(s) <= 1:
+        return True
+    if s[0] != s[-1]:
+        return False
+    return palindrom_shecker(s[1:-1])
+
+print(palindrom_shecker("молоко"))
+print(palindrom_shecker("топот"))
+print(palindrom_shecker("молоко делили ледоколом"))

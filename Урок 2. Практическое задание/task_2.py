@@ -17,3 +17,21 @@
 Введите число: 123
 Количество четных и нечетных цифр в числе равно: (1, 2)
 """
+even = 0
+not_even=0
+
+def delimiter(numb):
+    global even, not_even    
+    if str(numb) == "":
+        return(not_even, even)
+    if int(numb[0]) % 2:
+        even = even + 1
+    else:
+        not_even = not_even + 1
+    return delimiter(numb[1:])
+    
+
+
+
+
+print(delimiter("123"))

@@ -15,7 +15,6 @@
 from timeit import timeit
 from random import randint
 
-
 def recursive_reverse(number):
     if number == 0:
         return str(number % 10)
@@ -48,7 +47,6 @@ def memoize(f):
     cache = {}
 
     def decorate(*args):
-
         if args in cache:
             return cache[args]
         else:
@@ -80,3 +78,5 @@ print(
         'recursive_reverse_mem(num_10000)',
         setup='from __main__ import recursive_reverse_mem, num_10000',
         number=10000))
+print(recursive_reverse(12345678))
+print(recursive_reverse_mem(12345678))

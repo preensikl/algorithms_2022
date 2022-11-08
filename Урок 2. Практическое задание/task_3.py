@@ -18,3 +18,9 @@
 Не забудьте проверить на числе, которое оканчивается на 0.
 1230 -> 0321
 """
+def recursive(n):
+    if len(str(n)) == 1:
+        return n % 10
+    return f"{n % 10}{recursive(n // 10)}"
+
+print(recursive(123456))

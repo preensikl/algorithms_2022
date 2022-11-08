@@ -10,3 +10,15 @@
 Решите через рекурсию. В задании нельзя применять циклы.
 Нужно обойтисть без создания массива!
 """
+
+
+def counter(numb, cycle):
+    if cycle == 0:
+        return 0
+    return_summ = numb[0] + counter(numb[1:], cycle-1)
+    return return_summ
+
+
+
+mass = [1, -0.5, 0.25, -0.125]
+print(counter(mass, 3))

@@ -30,3 +30,83 @@
 
 Это файл для четвертого скрипта
 """
+import sqlite3
+import hashlib
+
+# 1
+class Web_cash():
+    __clots__ = ("salt", "conn", "curs", "result", "url_hash", "url")
+
+    def __init__(self):
+        self.salt = "f2fdd202e5c94d60984f77e4e2b624a1"
+
+    def __db_helper(self, magic):
+        self.conn = sqlite3.connect("urls_cash.db")
+        self.curs = self.conn.cursor()
+        self.result = self.curs.execute(magic).fetchall()
+        self.conn.commit()
+        self.conn.close()
+        return self.result
+
+    def __add_hash(self, url):
+        url_hash = hashlib.sha512((url + self.salt).encode("utf-8")).hexdigest()
+        self.__db_helper(f"INSERT INTO urls_cash(url, hash) VALUES('{url}','{url_hash}')")
+        
+
+    def __select(self, url):
+        url_cash = self.__db_helper(f"SELECT hash FROM urls_cash WHERE url = '{url}'")
+        return url_cash
+
+    def start(self, url):
+        self.url = self.__select(url)
+        if  self.url == []:
+            self.__add_hash(url)
+        else:
+            return self.url[0][0]
+
+
+
+main = Web_cash()
+
+
+print(main.start("https://pythonworld.ru/osnovy/pep-8-rukovodstvo-po-napisaniyu-koda-na-python.html"))
+print(main.start("https://www.google.com/"))
+
+
+# 2
+class Web_cash_optimzae():
+    def __init__(self):
+        self.salt = "f2fdd202e5c94d60984f77e4e2b624a1"
+
+    def __db_helper(self, magic):
+        self.conn = sqlite3.connect("urls_cash.db")
+        self.curs = self.conn.cursor()
+        self.result = self.curs.execute(magic).fetchall()
+        self.conn.commit()
+        self.conn.close()
+        return self.result
+
+    def __add_hash(self, url):
+        url_hash = hashlib.sha512((url + self.salt).encode("utf-8")).hexdigest()
+        self.__db_helper(f"INSERT INTO urls_cash(url, hash) VALUES('{url}','{url_hash}')")
+        
+
+    def __select(self, url):
+        url_cash = self.__db_helper(f"SELECT hash FROM urls_cash WHERE url = '{url}'")
+        return url_cash
+
+    def start(self, url):
+        self.url = self.__select(url)
+        if  self.url == []:
+            self.__add_hash(url)
+        else:
+            return self.url[0][0]
+
+
+
+main = Web_cash_optimzae()
+
+
+print(main.start("https://pythonworld.ru/osnovy/pep-8-rukovodstvo-po-napisaniyu-koda-na-python.html"))
+print(main.start("https://www.google.com/"))
+

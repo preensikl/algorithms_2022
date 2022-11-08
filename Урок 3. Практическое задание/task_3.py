@@ -5,7 +5,7 @@
 Дана строка S длиной N, состоящая только из строчных латинских букв
 
 Подсказка: вы должны в цикле для каждой подстроки вычислить хеш
-Все хеши записываем во множество.
+Все хеши записываем во множество.   
 Оно отсечет дубли.
 
 Экономия на размере хранимых данных (для длинных строк) и
@@ -22,3 +22,15 @@
 р
 а
 """
+import hashlib
+
+inputstring = 'papa'
+substrings = set()
+for i in range(0,len(inputstring)+1):
+    for j in range(i+1,len(inputstring)+1):
+        substr=inputstring[i:j]
+        hesh = hashlib.md5(substr.encode('utf-8')).hexdigest()
+        substrings.add(hesh)
+
+for i in substrings:
+    print(i)

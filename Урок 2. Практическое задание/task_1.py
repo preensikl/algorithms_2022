@@ -27,3 +27,19 @@
 Вы вместо трехзначного числа ввели строку (((. Исправьтесь
 Введите операцию (+, -, *, / или 0 для выхода):
 """
+def calculator():
+    operations = ["+", "-", "/", "*"]
+    operation = input("Write operation: ")
+    if operation == "0":
+        return
+    if operation not in operations:
+        print("Dont do it!")    
+    first_numb = input("First_number: ")
+    second_numb = input("Second_number: ")
+    if (operation == "/" and second_numb == "0") == False :
+        print(f'Your answer: {eval(f"{first_numb}{operation}{second_numb}")}')
+    else:
+        print("You can not division for 0")
+    return calculator()
+
+calculator()

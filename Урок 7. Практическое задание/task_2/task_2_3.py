@@ -16,3 +16,15 @@
 
 В конце сделайте аналитику какой трех из способов оказался эффективнее
 """
+
+from statistics import median
+from random import randint
+from time import perf_counter
+
+
+ls = [randint(1, 100) for i in range(5*2+1)]
+start = perf_counter()
+print(median(ls))
+print(perf_counter()-start)
+print(ls)
+print(sorted(ls))
